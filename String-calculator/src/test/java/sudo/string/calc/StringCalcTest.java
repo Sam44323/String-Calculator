@@ -26,7 +26,12 @@ public class StringCalcTest {
     }
 
     @Test
-    public void testNewlineDelimitter() {
+    public void testNewlineDelimiter() {
         assertEquals(90, StringCalc.Add("10,20,30\n15\n15"));
+    }
+
+    @Test
+    public void testCustomDelimiter() {
+        assertEquals(90, StringCalc.Add("//;\n10;20;30;15;15"));
     }
 }
