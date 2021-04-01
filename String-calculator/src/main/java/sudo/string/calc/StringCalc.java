@@ -11,8 +11,8 @@ public class StringCalc {
     public static int Add(String value) {
         if (value.isEmpty()) {
             return 0;
-        } else if (value.contains(",")) {
-            StringTokenizer st = new StringTokenizer(value, ",");
+        } else if (value.contains(",") || value.contains("\n")) {
+            StringTokenizer st = new StringTokenizer(value, ",\n");
             int addvalue = 0;
             while (st.hasMoreTokens()) {
                 addvalue += Integer.parseInt(st.nextToken());

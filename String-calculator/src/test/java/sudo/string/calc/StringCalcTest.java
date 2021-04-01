@@ -24,4 +24,9 @@ public class StringCalcTest {
     public void testMultipleNumbersSum() {
         assertEquals(23, StringCalc.Add("7,1,3,4,8"));
     }
+
+    @Test
+    public void testNewlineDelimitter() {
+        assertEquals(90, StringCalc.Add("10,20,30\n15\n15"));
+    }
 }
