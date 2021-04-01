@@ -18,12 +18,18 @@ public class StringCalc {
     }
 
     public static void main(String[] args) {
-        System.out.println(Add("//;\n60;40;90"));
+        System.out.println(Add("//[***]\n10***20***30***15***15"));
     }
 
     public static int Add(String value) {
         if (value.isEmpty()) {
             return 0;
+        } else if (value.startsWith("//") && value.contains("[") && value.contains("]")) {
+
+            String pattern = value.substring(value.indexOf("[") + 1, value.indexOf("]"));
+            value = value.substring(value.indexOf("\n") + 1);
+            return calculateSumValue(value, pattern);
+
         } else if (value.startsWith("//")) {
 
             String pattern = value.substring(2, value.indexOf("\n"));
