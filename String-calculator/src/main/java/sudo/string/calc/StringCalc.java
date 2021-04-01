@@ -51,10 +51,6 @@ public class StringCalc {
         return calculateSumValue(value, patterns);
     }
 
-    public static void main(String[] args) {
-        System.out.println(Add("//[***][!!!]\n10***20***30!!!15***15"));
-    }
-
     public static int Add(String value) {
         if (value.isEmpty()) {
             return 0;
