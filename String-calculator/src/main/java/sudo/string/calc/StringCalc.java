@@ -25,6 +25,7 @@ public class StringCalc {
         if (value.isEmpty()) {
             return 0;
         } else if (value.startsWith("//")) {
+
             String pattern = "";
             if (value.contains("[") && value.contains("]")) {
                 pattern = value.substring(value.indexOf("[") + 1, value.indexOf("]"));
