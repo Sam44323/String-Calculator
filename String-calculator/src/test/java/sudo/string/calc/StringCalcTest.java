@@ -3,6 +3,7 @@ package sudo.string.calc;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 public class StringCalcTest {
     @Test
@@ -43,5 +44,15 @@ public class StringCalcTest {
     @Test
     public void testLongDelimeters() {
         assertEquals(90, StringCalc.Add("//[!!!]\n10!!!20!!!30!!!15!!!15"));
+    }
+
+    @Test
+    public void testForException() {
+        try {
+            StringCalc.Add("60,-1");
+            fail("Exception expected");
+        } catch (Exception e) {
+            assertEquals("Negative integer not allowed", e.getMessage());
+        }
     }
 }
