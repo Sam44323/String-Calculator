@@ -55,4 +55,9 @@ public class StringCalcTest {
             assertEquals("Negative integer not allowed", e.getMessage());
         }
     }
+
+    @Test
+    public void testMultipleDelimiters() {
+        assertEquals(90, StringCalc.Add("//[***][!!!]\n10***20***30!!!15***15"));
+    }
 }

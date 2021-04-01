@@ -3,21 +3,17 @@ package sudo.string.calc;
 import java.util.Stack;
 import java.util.StringTokenizer;
 
-import javax.management.RuntimeErrorException;
-
 public class StringCalc {
-    static Stack<Integer> neg = new Stack<Integer>();
+    static Stack<String> neg = new Stack<String>();
 
     public static int calculateSumValue(String value, String pattern) {
         StringTokenizer st = new StringTokenizer(value, pattern);
         int addvalue = 0;
-        neg.clear();
         boolean hasNeg = false;
         while (st.hasMoreTokens()) {
             int tokenVal = Integer.parseInt(st.nextToken());
             if (tokenVal < 0) {
                 hasNeg = true;
-                neg.push(tokenVal);
                 continue;
             }
             if (tokenVal > 1000) {
@@ -31,8 +27,32 @@ public class StringCalc {
         return !hasNeg ? addvalue : 0;
     }
 
+    public static int calculateMultipleDelSum(String value) {
+        neg.clear();
+        String pattern = value.substring(value.indexOf("[") + 1, value.indexOf("\n") - 1);
+        value = value.substring(value.indexOf("\n") + 1);
+        pattern += "]";
+        String chr = "[]";
+        String vls = "";
+        for (int i = 0; i < pattern.length(); i++) {
+            char vals = pattern.charAt(i);
+            if (vals == chr.charAt(1)) {
+                neg.push(vls);
+                vls = "";
+            } else {
+                vls += pattern.charAt(i) != chr.charAt(0) ? pattern.charAt(i) : "";
+            }
+        }
+        String patterns = "[";
+        for (String vals : neg) {
+            patterns += vals;
+        }
+        patterns += "]";
+        return calculateSumValue(value, patterns);
+    }
+
     public static void main(String[] args) {
-        System.out.println(Add("//[***]\n10***20***30***15***15"));
+        System.out.println(Add("//[***][!!!]\n10***20***30!!!15***15"));
     }
 
     public static int Add(String value) {
@@ -42,6 +62,15 @@ public class StringCalc {
 
             String pattern = "";
             if (value.contains("[") && value.contains("]")) {
+                int count = 0;
+                for (int i = 2; i < value.indexOf("\n"); i++) {
+                    if (value.charAt(i) == '[') {
+                        count++;
+                    }
+                }
+                if (count > 1) {
+                    return calculateMultipleDelSum(value);
+                }
                 pattern = value.substring(value.indexOf("[") + 1, value.indexOf("]"));
             } else {
                 pattern = value.substring(2, value.indexOf("\n"));
