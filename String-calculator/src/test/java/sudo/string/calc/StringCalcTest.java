@@ -14,4 +14,9 @@ public class StringCalcTest {
     public void testForSingleNumberValue() {
         assertEquals(100, StringCalc.Add("100"));
     }
+
+    @Test
+    public void testForTwoNumbersSum() {
+        assertEquals(100, StringCalc.Add("60,40"));
+    }
 }
