@@ -24,15 +24,13 @@ public class StringCalc {
     public static int Add(String value) {
         if (value.isEmpty()) {
             return 0;
-        } else if (value.startsWith("//") && value.contains("[") && value.contains("]")) {
-
-            String pattern = value.substring(value.indexOf("[") + 1, value.indexOf("]"));
-            value = value.substring(value.indexOf("\n") + 1);
-            return calculateSumValue(value, pattern);
-
         } else if (value.startsWith("//")) {
-
-            String pattern = value.substring(2, value.indexOf("\n"));
+            String pattern = "";
+            if (value.contains("[") && value.contains("]")) {
+                pattern = value.substring(value.indexOf("[") + 1, value.indexOf("]"));
+            } else {
+                pattern = value.substring(2, value.indexOf("\n"));
+            }
             value = value.substring(value.indexOf("\n") + 1);
             return calculateSumValue(value, pattern);
 
