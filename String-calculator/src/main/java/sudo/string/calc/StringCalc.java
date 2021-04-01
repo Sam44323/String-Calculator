@@ -8,7 +8,11 @@ public class StringCalc {
         StringTokenizer st = new StringTokenizer(value, pattern);
         int addvalue = 0;
         while (st.hasMoreTokens()) {
-            addvalue += Integer.parseInt(st.nextToken());
+            int tokenVal = Integer.parseInt(st.nextToken());
+            if (tokenVal > 1000) {
+                tokenVal = 0;
+            }
+            addvalue += tokenVal;
         }
         return addvalue;
     }

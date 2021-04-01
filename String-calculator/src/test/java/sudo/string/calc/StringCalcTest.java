@@ -34,4 +34,9 @@ public class StringCalcTest {
     public void testCustomDelimiter() {
         assertEquals(90, StringCalc.Add("//;\n10;20;30;15;15"));
     }
+
+    @Test
+    public void testNumberGtThousand() {
+        assertEquals(23, StringCalc.Add("7,1,3,4,8,1001"));
+    }
 }
