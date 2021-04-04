@@ -19,7 +19,7 @@ _Uses Junit for testing_
 * __Custom multiple delimiters accepted (e.g. "//[***][!!!]\n10***20***30!!!15***15")__ ----------> returns the sum i.e. 90
 
 ---
-# _Techstack_
+# __Techstack__
 * Java
 * Junit(for testing)
 
